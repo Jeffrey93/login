@@ -17,7 +17,8 @@ import { AutenticacionService } from './../../../servicios/autenticacion.service
 })
 export class LoguearsePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public autenticacionService: AutenticacionService) {
+  constructor(public navCtrl: NavController,
+        public navParams: NavParams, public autenticacionService: AutenticacionService) {
   }
 
 
@@ -26,8 +27,6 @@ export class LoguearsePage {
 
   }
   registrarUsuario(formulario: NgForm){
-    let correo:string = "ingenierojeffry@gmail.com";
-    let password:string = "ingenierojeffrygmail.com";
-    this.autenticacionService.registrarUsuario(correo, password)
+   // this.autenticacionService.registrarUsuario(correo, password)
   }
 }
