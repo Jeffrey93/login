@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {NgForm} from '@angular/forms';
 
+import { AutenticacionService } from './../../../servicios/autenticacion.service';
 /**
  * Generated class for the LoguearsePage page.
  *
@@ -15,11 +17,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class LoguearsePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public autenticacionService: AutenticacionService) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoguearsePage');
-  }
 
+
+  iniciarSesion(formulario: NgForm){
+
+  }
+  registrarUsuario(formulario: NgForm){
+    let correo:string = "ingenierojeffry@gmail.com";
+    let password:string = "ingenierojeffrygmail.com";
+    this.autenticacionService.registrarUsuario(correo, password)
+  }
 }
