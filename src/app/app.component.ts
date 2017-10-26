@@ -14,7 +14,7 @@ export class MyApp {
   homepage= HomePage;
   loguearse= LoguearsePage;
   @ViewChild('contenido') contenido: NavController;
-  usuarioEstaConectado =false;
+   usuarioEstaConectado:boolean = false;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public menuCtrl: MenuController, public authService : AutenticacionService) {
     platform.ready().then(() => {
@@ -32,10 +32,10 @@ export class MyApp {
     firebase.auth().onAuthStateChanged(
       usuario =>{
         if (usuario != null){
-          this.usuarioEstaConectado = true;
+         this.usuarioEstaConectado = true;
           this.contenido.setRoot(this.homepage);
         }else{
-          this.usuarioEstaConectado = true;
+          this.usuarioEstaConectado = false;
           this.contenido.setRoot(this.loguearse);
         }
       })
