@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { LoguearsePage } from './../pages/loguearse/loguearse';
 import firebase from 'firebase';
+import { AutenticacionService } from './../../servicios/autenticacion.service';
 @Component({
   templateUrl: 'app.html'
 })
@@ -13,8 +14,9 @@ export class MyApp {
   homepage= HomePage;
   loguearse= LoguearsePage;
   @ViewChild('contenido') contenido: NavController;
+  usuarioEstaConectado =false;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public menuCtrl: MenuController) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public menuCtrl: MenuController, public authService : AutenticacionService) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -25,6 +27,18 @@ export class MyApp {
       apiKey: "AIzaSyC4_c2k0kIILMlHmOR2ZNVsXYxTLDQJtT4",
       authDomain: "ateco-5e8b3.firebaseapp.com"
     });
+    //validar si el usuario está conectado
+
+    firebase.auth().onAuthStateChanged(
+      usuario =>{
+        if (usuario != null){
+          this.usuarioEstaConectado = true;
+          this.contenido.setRoot(this.homepage);
+        }else{
+          this.usuarioEstaConectado = true;
+          this.contenido.setRoot(this.loguearse);
+        }
+      })
   }
   llamarPagina(pagina){
     //modificar raiz 
@@ -32,7 +46,8 @@ export class MyApp {
     this.menuCtrl.close();
   }
   terminarSesion(){
-
+    this.authService.terminarSesion();
+    this.menuCtrl.close();
   }
 }
 

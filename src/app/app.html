@@ -8,9 +8,12 @@
     </ion-header>
     <ion-content>
         <ion-list>
-            <button ion-item (click)="llamarPagina(homepage)">Inicio</button>
-            <button ion-item (click)="llamarPagina(loguearse)">Iniciar Sesión</button>
-            <button ion-item (click)="terminarSesion()">Terminar Sesión</button>
+            <button ion-item *ngIf="usuarioEstaConectado"
+            (click)="llamarPagina(homepage)">Inicio</button>
+            <button ion-item  *ngIf="!usuarioEstaConectado"
+            (click)="llamarPagina(loguearse)">Iniciar Sesión</button>
+            <button ion-item  *ngIf="usuarioEstaConectado"
+            (click)="terminarSesion()">Terminar Sesión</button>
         </ion-list>
     </ion-content>
 </ion-menu>
